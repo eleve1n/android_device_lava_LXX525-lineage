@@ -1,0 +1,231 @@
+name: Build LineageOS 22.1 - Lava LXX525
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    # This must be a self-hosted runner with enough disk/RAM.
+    runs-on: self-hosted
+
+    env:
+      ROM_MANIFEST: https://github.com/LineageOS/android.git
+      ROM_BRANCH: lineage-22.1
+      DEVICE: LXX525
+      DEVICE_PATH: device/lava/LXX525
+      VENDOR_PATH: vendor/lava/LXX525
+      KERNEL_PATH: device/lava/LXX525-kernel
+
+    steps:
+      - name: Check runner
+        shell: bash
+        run: |
+          set -eux
+          echo "=== CPU ==="
+          nproc
+          echo "=== RAM ==="
+          free -h
+          echo "=== DISK ==="
+          df -h
+          echo "=== OS ==="
+          cat /etc/os-release
+
+      - name: Install build dependencies
+        shell: bash
+        run: |
+          sudo apt-get update
+
+          sudo apt-get install -y \
+            adb \
+            bc \
+            bison \
+            build-essential \
+            ccache \
+            curl \
+            flex \
+            g++-multilib \
+            gcc-multilib \
+            git \
+            gnupg \
+            gperf \
+            imagemagick \
+            lib32readline-dev \
+            lib32z1-dev \
+            libelf-dev \
+            liblz4-tool \
+            libncurses5-dev \
+            libncurses5 \
+            libssl-dev \
+            libxml2 \
+            libxml2-utils \
+            lzop \
+            m4 \
+            openjdk-17-jdk \
+            pngcrush \
+            python3 \
+            python3-pip \
+            rsync \
+            schedtool \
+            squashfs-tools \
+            unzip \
+            xsltproc \
+            zip \
+            zlib1g-dev
+
+      - name: Install repo
+        shell: bash
+        run: |
+          mkdir -p "$HOME/bin"
+          curl -L https://storage.googleapis.com/git-repo-downloads/repo \
+            -o "$HOME/bin/repo"
+          chmod a+x "$HOME/bin/repo"
+
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/bin:$PATH"
+
+          repo --version
+
+      - name: Prepare source directory
+        shell: bash
+        run: |
+          set -eux
+
+          rm -rf "$HOME/lineage"
+
+          mkdir -p "$HOME/lineage"
+          cd "$HOME/lineage"
+
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Initialize LineageOS 22.1
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          repo init \
+            -u "$ROM_MANIFEST" \
+            -b "$ROM_BRANCH" \
+            --git-lfs
+
+      - name: Sync LineageOS source
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          repo sync \
+            --force-sync \
+            --no-clone-bundle \
+            --no-tags \
+            --optimized-fetch \
+            --prune \
+            -j"$(nproc)"
+
+      - name: Add LXX525 device tree
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          rm -rf "$DEVICE_PATH"
+
+          git clone \
+            --depth=1 \
+            --branch=main \
+            https://github.com/eleve1n/android_device_lava_LXX525-lineage.git \
+            "$DEVICE_PATH"
+
+      - name: Add LXX525 vendor tree
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          rm -rf "$VENDOR_PATH"
+
+          git clone \
+            --depth=1 \
+            --branch=lineage-22.1 \
+            https://github.com/eleve1n/android_vendor_lava_LXX525.git \
+            "$VENDOR_PATH"
+
+      - name: Verify device dependencies
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          echo "=== Device tree ==="
+          test -f "$DEVICE_PATH/BoardConfig.mk"
+          test -f "$DEVICE_PATH/lineage_LXX525.mk"
+
+          echo "=== Vendor tree ==="
+          test -f "$VENDOR_PATH/BoardConfigVendor.mk"
+
+          echo "=== Prebuilt kernel ==="
+          test -f "$KERNEL_PATH/Image"
+
+          echo "LXX525 device, vendor and prebuilt kernel found."
+
+      - name: Enable ccache
+        shell: bash
+        run: |
+          set -eux
+
+          mkdir -p "$HOME/.ccache"
+
+          ccache --set-config=max_size=50G
+          ccache --set-config=compression=true
+
+          echo "USE_CCACHE=1" >> "$GITHUB_ENV"
+          echo "CCACHE_EXEC=$(command -v ccache)" >> "$GITHUB_ENV"
+
+      - name: Build LineageOS
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          source build/envsetup.sh
+
+          lunch lineage_LXX525-userdebug
+
+          mka bacon
+
+      - name: Locate build output
+        shell: bash
+        run: |
+          set -eux
+          cd "$HOME/lineage"
+
+          echo "=== Build output ==="
+          find out/target/product/LXX525 \
+            -maxdepth 1 \
+            -type f \
+            \( -name "*.zip" -o -name "*.img" -o -name "*.json" \) \
+            -print
+
+      - name: Copy ROM to workspace
+        shell: bash
+        run: |
+          set -eux
+
+          mkdir -p "$GITHUB_WORKSPACE/rom"
+
+          find "$HOME/lineage/out/target/product/LXX525" \
+            -maxdepth 1 \
+            -type f \
+            \( -name "*.zip" -o -name "*.json" \) \
+            -exec cp -v {} "$GITHUB_WORKSPACE/rom/" \;
+
+          ls -lh "$GITHUB_WORKSPACE/rom"
+
+      - name: Upload LineageOS ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: LineageOS-22.1-LXX525
+          path: rom/
+          if-no-files-found: error
+          retention-days: 7
