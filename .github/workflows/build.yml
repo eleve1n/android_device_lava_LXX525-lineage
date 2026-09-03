@@ -1,4 +1,4 @@
-name: Build LineageOS 22.1 - Lava LXX525
+name: Build LineageOS 22.1 - LAVA LXX525
 
 on:
   workflow_dispatch:
