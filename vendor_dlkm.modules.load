@@ -1,0 +1,2 @@
+# Kernel modules to load at vendor init
+# This file should be replaced with actual module list from kernel

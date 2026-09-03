@@ -1,0 +1,2 @@
+# Kernel modules to load in vendor ramdisk
+# This file should be replaced with actual module list from kernel
