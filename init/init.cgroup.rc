@@ -1,0 +1,23 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+on early-init
+    # Create cgroup mount points
+    mkdir /dev/cpuctl
+    mkdir /dev/cpuctl/foreground
+    mkdir /dev/cpuctl/background
+    mkdir /dev/cpuctl/top-app
+    mkdir /dev/cpuctl/restricted
+
+on init
+    # CPU cgroup
+    chown system system /dev/cpuctl
+    chown system system /dev/cpuctl/foreground
+    chown system system /dev/cpuctl/background
+    chown system system /dev/cpuctl/top-app
+    chown system system /dev/cpuctl/restricted
+
+    chmod 0666 /dev/cpuctl/foreground/tasks
+    chmod 0666 /dev/cpuctl/background/tasks
+    chmod 0666 /dev/cpuctl/top-app/tasks
+    chmod 0666 /dev/cpuctl/restricted/tasks

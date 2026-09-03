@@ -1,0 +1,62 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+# GPU
+/dev/mali0               0666   system     graphics
+
+# Sensors
+/dev/hwmsensor           0666   system     system
+/dev/lightsensor         0666   system     system
+/dev/step_counter        0666   system     system
+
+# Camera
+/dev/camlog              0666   cameraserver audio
+/dev/CAMIO               0660   cameraserver camera
+/dev/camera-sysram      0660   cameraserver camera
+
+# Touchscreen
+/dev/tp_apk              0666   root       root
+/dev/ftm_ts              0666   root       root
+
+# Audio
+/dev/audio               0660   system     audio
+/dev/audio_ref           0660   system     audio
+/dev/snd/pcmC0D0c        0660   system     audio
+/dev/snd/pcmC0D0p        0660   system     audio
+/dev/snd/timer           0660   system     audio
+/dev/snd/controlC0       0660   system     audio
+
+# GPS
+/dev/stp_gps             0660   gps        gps
+/dev/gps                 0660   gps        gps
+/dev/gps_atc             0660   gps        gps
+
+# Bluetooth
+/dev/stp_bt              0660   bluetooth  bluetooth
+/dev/wmtWifi             0660   system     wifi
+
+# Display
+/dev/graphics/fb0        0660   system     graphics
+/dev/graphics/fb1        0660   system     graphics
+/dev/overlay             0660   system     graphics
+
+# Misc
+/dev/cmm                 0660   system     system
+/dev/ccu                 0660   system     system
+/dev/md32_logger         0660   system     system
+/dev/md32_ctrl           0660   system     system
+
+# Battery
+/dev/fgdump              0660   system     system
+
+# RTC
+/dev/rtc0                0660   system     system
+
+# USB
+/dev/usb*               0660   root       usb
+
+# I2C
+/dev/i2c-*              0660   system     system
+
+# Flashlight
+/dev/flashlight         0660   system     camera

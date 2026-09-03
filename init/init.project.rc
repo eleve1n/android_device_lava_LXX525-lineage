@@ -1,0 +1,30 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+on init
+    setprop sys.usb.configfs 1
+
+on boot
+    # USB controller
+    write /sys/class/android_usb/android0/enable 0
+
+    # Permissions for sensors
+    chmod 666 /dev/hwmsensor
+    chmod 666 /dev/lightsensor
+
+    # Permissions for camera
+    chmod 0666 /dev/camlog
+
+    # GPU
+    chmod 0666 /dev/mali0
+
+    # Touchscreen
+    chmod 0666 /proc/touchpanel/cur_f_state
+    chmod 0666 /proc/touchpanel/dbg_reg_state
+    chmod 0666 /proc/touchpanel/game_switch
+
+    # Display
+    chown system graphics /sys/class/graphics/fb0/misc
+    chown system graphics /sys/class/graphics/fb0/disp_session
+    chown system graphics /sys/class/graphics/fb0/overlay
+    chown system graphics /sys/class/graphics/fb0/vsync

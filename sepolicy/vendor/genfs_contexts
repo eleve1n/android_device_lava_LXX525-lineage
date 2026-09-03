@@ -1,0 +1,5 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+genfscon proc /tp_apk    u:object_r:proc_tp_apk:s0
+genfscon proc /touchpanel    u:object_r:proc_touchpanel:s0

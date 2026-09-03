@@ -1,0 +1,9 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+vendor.bluetooth.    u:object_r:vendor_bluetooth_prop:s0
+vendor.wifi.         u:object_r:vendor_wifi_prop:s0
+vendor.gps.          u:object_r:vendor_gps_prop:s0
+vendor.mtk.          u:object_r:vendor_mtk_prop:s0
+persist.vendor.mtk.  u:object_r:vendor_persist_mtk_prop:s0
+ro.vendor.mtk.       u:object_r:vendor_ro_mtk_prop:s0

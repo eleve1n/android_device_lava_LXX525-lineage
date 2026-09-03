@@ -1,0 +1,14 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+on boot
+    # Sensor permissions
+    chmod 666 /dev/hwmsensor
+    chmod 666 /dev/lightsensor
+
+    # Step counter
+    chmod 666 /dev/step_counter
+
+    # Accdet
+    chmod 0660 /dev/accdet
+    chown media audio /dev/accdet

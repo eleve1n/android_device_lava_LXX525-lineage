@@ -1,0 +1,22 @@
+[
+    {
+        "repository": "android_device_mediatek_sepolicy_vndr",
+        "target_path": "device/mediatek/sepolicy_vndr",
+        "branch": "lineage-22.1"
+    },
+    {
+        "repository": "android_hardware_mediatek",
+        "target_path": "hardware/mediatek",
+        "branch": "lineage-22.1"
+    },
+    {
+        "repository": "android_device_lava_LXX525-kernel",
+        "target_path": "device/lava/LXX525-kernel",
+        "branch": "lineage-22.1"
+    },
+    {
+        "repository": "android_vendor_lava_LXX525",
+        "target_path": "vendor/lava/LXX525",
+        "branch": "lineage-22.1"
+    }
+]

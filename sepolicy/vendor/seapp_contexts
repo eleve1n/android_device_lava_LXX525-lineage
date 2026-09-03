@@ -1,0 +1,6 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+user=system seinfo=platform name=com.mediatek.gba domain=system_app type=system_app_data_file
+user=system seinfo=platform name=com.mediatek.ims domain=system_app type=system_app_data_file
+user=system seinfo=platform name=com.mediatek.mms.domain domain=system_app type=system_app_data_file

@@ -1,0 +1,22 @@
+{
+    "Thermal": [
+        {
+            "send_mode": "0",
+            "cooling_type": "1",
+            "thresholds": "55000,60000,65000,70000,75000",
+            "thresholds_clr": "50000,55000,60000,65000,70000",
+            "actions": "8,8,8,8,8",
+            "action_infos": "0,0,0,0,0"
+        }
+    ],
+    "Battery": [
+        {
+            "send_mode": "0",
+            "cooling_type": "1",
+            "thresholds": "44000,48000,52000,56000,60000",
+            "thresholds_clr": "39000,43000,47000,51000,55000",
+            "actions": "8,8,8,8,8",
+            "action_infos": "0,0,0,0,0"
+        }
+    ]
+}

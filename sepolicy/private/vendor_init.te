@@ -1,0 +1,6 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+# Allow vendor_init to set vendor properties
+allow vendor_init vendor_bluetooth_prop:property_service { set };
+allow vendor_init vendor_wifi_prop:property_service { set };

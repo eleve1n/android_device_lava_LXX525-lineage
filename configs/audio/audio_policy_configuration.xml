@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<audioPolicyConfiguration version="7.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <modules>
+        <module name="primary" halVersion="2.0">
+            <attachedDevices>
+                <item>Speaker</item>
+                <item>Speaker Safe</item>
+                <item>Earpiece</item>
+                <item>Built-In Mic</item>
+                <item>Built-In Back Mic</item>
+                <item>Telephony Tx</item>
+                <item>Built-In SCO Mic</item>
+                <item>Telephony Rx</item>
+            </attachedDevices>
+            <defaultOutputDevice>Speaker</defaultOutputDevice>
+            <mixPorts>
+                <mixPort name="primary output" role="source" flags="AUDIO_OUTPUT_FLAG_PRIMARY|AUDIO_OUTPUT_FLAG_FAST">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
+                <mixPort name="raw" role="source" flags="AUDIO_OUTPUT_FLAG_RAW|AUDIO_OUTPUT_FLAG_FAST">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
+                <mixPort name="deep_buffer" role="source" flags="AUDIO_OUTPUT_FLAG_DEEP_BUFFER">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
+                <mixPort name="telephony_tx" role="source">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_OUT_MONO|AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
+                <mixPort name="primary input" role="sink">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
+                             channelMasks="AUDIO_CHANNEL_IN_MONO|AUDIO_CHANNEL_IN_STEREO"/>
+                </mixPort>
+                <mixPort name="telephony_rx" role="sink">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="48000" channelMasks="AUDIO_CHANNEL_IN_MONO"/>
+                </mixPort>
+            </mixPorts>
+            <devicePorts>
+                <devicePort tagName="Earpiece" type="AUDIO_DEVICE_OUT_EARPIECE" role="sink"/>
+                <devicePort tagName="Speaker" type="AUDIO_DEVICE_OUT_SPEAKER" role="sink"/>
+                <devicePort tagName="Speaker Safe" type="AUDIO_DEVICE_OUT_SPEAKER_SAFE" role="sink"/>
+                <devicePort tagName="Built-In Mic" type="AUDIO_DEVICE_IN_BUILTIN_MIC" role="source"/>
+                <devicePort tagName="Built-In Back Mic" type="AUDIO_DEVICE_IN_BACK_MIC" role="source"/>
+                <devicePort tagName="Telephony Tx" type="AUDIO_DEVICE_OUT_TELEPHONY_TX" role="sink"/>
+                <devicePort tagName="Built-In SCO Mic" type="AUDIO_DEVICE_IN_VOICE_CALL" role="source"/>
+                <devicePort tagName="Telephony Rx" type="AUDIO_DEVICE_IN_TELEPHONY_RX" role="source"/>
+            </devicePorts>
+            <routes>
+                <route type="mix" sink="Earpiece" sources="primary output,raw,deep_buffer,telephony_tx"/>
+                <route type="mix" sink="Speaker" sources="primary output,raw,deep_buffer,telephony_tx"/>
+                <route type="mix" sink="Speaker Safe" sources="primary output,raw,deep_buffer,telephony_tx"/>
+                <route type="mix" sink="Telephony Tx" sources="primary output"/>
+                <route type="mix" sink="primary input" sources="Built-In Mic,Built-In Back Mic,Telephony Rx,Built-In SCO Mic"/>
+                <route type="mix" sink="Telephony Rx" sources="telephony_tx"/>
+            </routes>
+        </module>
+        <module name="bluetooth" halVersion="2.0">
+            <attachedDevices>
+                <item>BT Headset</item>
+                <item>BT A2DP Out</item>
+                <item>BT SCO Mic</item>
+            </attachedDevices>
+            <mixPorts>
+                <mixPort name="a2dp output" role="source" flags="AUDIO_OUTPUT_FLAG_A2DP">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="44100,48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
+                <mixPort name="sco output" role="source" flags="AUDIO_OUTPUT_FLAG_DIRECT">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="8000,16000" channelMasks="AUDIO_CHANNEL_OUT_MONO"/>
+                </mixPort>
+                <mixPort name="bluetooth input" role="sink">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="8000,16000" channelMasks="AUDIO_CHANNEL_IN_MONO|AUDIO_CHANNEL_IN_STEREO"/>
+                </mixPort>
+            </mixPorts>
+            <devicePorts>
+                <devicePort tagName="BT Headset" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO_HEADSET" role="sink"/>
+                <devicePort tagName="BT A2DP Out" type="AUDIO_DEVICE_OUT_BLUETOOTH_A2DP" role="sink"/>
+                <devicePort tagName="BT SCO Mic" type="AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET" role="source"/>
+            </devicePorts>
+            <routes>
+                <route type="mix" sink="BT Headset" sources="sco output"/>
+                <route type="mix" sink="BT A2DP Out" sources="a2dp output"/>
+                <route type="mix" sink="bluetooth input" sources="BT SCO Mic"/>
+            </routes>
+        </module>
+    </modules>
+    <xi:include href="audio_policy_volumes.xml"/>
+</audioPolicyConfiguration>

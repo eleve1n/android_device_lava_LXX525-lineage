@@ -1,0 +1,11 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+vendor.mediatek.hardware.audio::IMtkAudio    u:object_r:hal_mtk_audio_hwservice:s0
+vendor.mediatek.hardware.camera.atms::IATMs    u:object_r:hal_mtk_camera_hwservice:s0
+vendor.mediatek.hardware.camera.bgservice::IBGService    u:object_r:hal_mtk_camera_hwservice:s0
+vendor.mediatek.hardware.composer_ext::IComposerExt    u:object_r:hal_mtk_composer_hwservice:s0
+vendor.mediatek.hardware.mmagent::IMMAgent    u:object_r:hal_mtk_mmagent_hwservice:s0
+vendor.mediatek.hardware.nvram::INvram    u:object_r:hal_mtk_nvram_hwservice:s0
+vendor.mediatek.hardware.pq_aidl::IPictureQuality_AIDL    u:object_r:hal_mtk_pq_hwservice:s0
+vendor.mediatek.hardware.videotelephony::IVideoTelephony    u:object_r:hal_mtk_vt_hwservice:s0

@@ -1,0 +1,26 @@
+# Copyright (C) 2024 The LineageOS Project
+# SPDX-License-Identifier: Apache-2.0
+
+on init
+    # WiFi
+    setprop ro.vendor.wifi.sap_iface wlan0
+    setprop ro.vendor.wifi.softap_iface wlan0
+
+    # Bluetooth
+    setprop ro.vendor.bluetooth.pts=false
+    setprop persist.vendor.bluetooth.enable=true
+
+on boot
+    # WiFi MAC address
+    setprop ro.vendor.wifi.addr /sys/class/net/wlan0/address
+
+    # Bluetooth MAC
+    setprop ro.vendor.btmac /sys/class/bluetooth/address
+
+on post-fs-data
+    # Create WiFi directories
+    mkdir /data/vendor/wifi 0771 wifi wifi
+    mkdir /data/vendor/wifi/wpa 0771 wifi wifi
+
+    # Create Bluetooth directories
+    mkdir /data/vendor/bluetooth 0771 bluetooth bluetooth
