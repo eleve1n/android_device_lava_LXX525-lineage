@@ -7,5 +7,5 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_LXX525.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_LXX525-userdebug \
-    lineage_LXX525-eng
+    lineage_LXX525-ap3a-userdebug \
+    lineage_LXX525-ap3a-eng
