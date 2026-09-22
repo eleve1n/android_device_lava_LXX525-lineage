@@ -1,0 +1,4 @@
+# odm.prop — Lava LXX525
+# Additional ODM partition properties.
+# Add ODM-level props below as needed, e.g.:
+# ro.vendor.vx... (check vendor build.prop from stock for candidates)
