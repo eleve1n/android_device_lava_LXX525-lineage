@@ -21,10 +21,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Boot control
-PRODUCT_PACKAGES += \
-    android.hardware.boot-service.mediatek \
-    android.hardware.boot-service.mediatek_recovery
+# Boot control (HAL binary is a vendor blob: android.hardware.boot-service.mtk,
+# installed via LXX525-vendor.mk)
 
 PRODUCT_PACKAGES += \
     create_pl_dev \
@@ -36,9 +34,8 @@ PRODUCT_PACKAGES += \
     update_engine_sideload \
     update_verifier
 
-# Audio
+# Audio (audio HAL service is a vendor blob, installed via LXX525-vendor.mk)
 PRODUCT_PACKAGES += \
-    android.hardware.audio.service.mediatek \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.bluetooth.audio-impl
 
@@ -65,9 +62,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml
 
-# Bluetooth
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth-service.mediatek
+# Bluetooth (HAL binary is a vendor blob, installed via LXX525-vendor.mk)
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
@@ -88,13 +83,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fastbootd
 
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper-service.mitee
+# Gatekeeper (HAL binary is a vendor blob: android.hardware.gatekeeper-service.trustkernel)
 
-# Graphics
-PRODUCT_PACKAGES += \
-    android.hardware.memtrack-service.mediatek
+# Graphics (memtrack service is a vendor blob, installed via LXX525-vendor.mk)
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
@@ -118,13 +109,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init/fstab.mt6897:$(TARGET_COPY_OUT_VENDOR_ramdisk)/first_stage_ramdisk/fstab.mt6897 \
     $(LOCAL_PATH)/init/ueventd.mt6897.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
 
-# Keymint
-PRODUCT_PACKAGES += \
-    android.hardware.security.keymint@3.0-service.mitee
+# Keymint (HAL binary is a vendor blob: android.hardware.security.keymint@3.0-service.trustkernel)
 
-# Media
-PRODUCT_PACKAGES += \
-    android.hardware.media.c2@1.2-mediatek-64b
+# Media (c2 codec service is a vendor blob, installed via LXX525-vendor.mk)
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -156,21 +143,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.managed_users.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.managed_users.xml \
     frameworks/native/data/etc/android.software.webview.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.webview.xml
 
-# Power
-PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    libmtkperf_client_vendor \
-    libperfctl_vendor \
-    libpowerhalwrap_vendor
+# Power (perf/power libs are vendor blobs, installed via LXX525-vendor.mk;
+# power management handled by vendor.mediatek.hardware.mtkpower-service blob)
 
-# Rootdir
-PRODUCT_PACKAGES += \
-    init.mt6897.rc \
-    init.project.rc
+# Rootdir (init rc files already copied via PRODUCT_COPY_FILES above)
 
-# Sensors
+# Sensors (multihal service is a vendor blob, installed via LXX525-vendor.mk)
 PRODUCT_PACKAGES += \
-    android.hardware.sensors-service.xiaomi-multihal \
     sensors.dynamic_sensor_hal
 
 PRODUCT_COPY_FILES += \
@@ -190,10 +169,7 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/mediatek
 
-# Telephony
-PRODUCT_PACKAGES += \
-    android.hardware.radio-service \
-    android.hardware.radio.config-service
+# Telephony (radio is handled by the mtkfusionrild vendor blob)
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
