@@ -21,10 +21,6 @@ TARGET_NO_BOOTLOADER := true
 # Display
 TARGET_SCREEN_DENSITY := 480
 
-# Vintf
-BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/mediatek/vintf/mediatek_framework_compatibility_matrix.xml
