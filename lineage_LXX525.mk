@@ -23,6 +23,6 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_GMS_CLIENTID_BASE := android-lava
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BuildDesc="LXX525-user 15 AP3A.240905.015.A2 release-keys" \
+    BuildDesc=LXX525-user 15 AP3A.240905.015.A2 release-keys \
     BuildFingerprint=Lava/LXX525/LXX525:15/AP3A.240905.015.A2/release-keys \
     DeviceProduct=LXX525

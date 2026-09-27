@@ -234,3 +234,6 @@ PRODUCT_COPY_FILES += \
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/lava/LXX525/LXX525-vendor.mk)
+
+# Filter out duplicate copy targets
+PRODUCT_COPY_FILES := $(call filter-product-copy-files,$(PRODUCT_COPY_FILES))
