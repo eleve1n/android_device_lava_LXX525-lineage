@@ -23,8 +23,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 
 # Boot control
 PRODUCT_PACKAGES += \
-    android.hardware.boot-service.mediatek \
-    android.hardware.boot-service.mediatek_recovery
 
 PRODUCT_PACKAGES += \
     create_pl_dev \
@@ -38,7 +36,6 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio.service.mediatek \
     android.hardware.audio.effect@7.0-impl \
     android.hardware.bluetooth.audio-impl
 
@@ -67,7 +64,6 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth-service.mediatek
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
@@ -90,11 +86,9 @@ PRODUCT_PACKAGES += \
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper-service.mitee
 
 # Graphics
 PRODUCT_PACKAGES += \
-    android.hardware.memtrack-service.mediatek
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
@@ -109,8 +103,6 @@ PRODUCT_PACKAGES += \
 
 # Init scripts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init/init.mt6897.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.mt6897.rc \
-    $(LOCAL_PATH)/init/init.project.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.project.rc \
     $(LOCAL_PATH)/init/init.connectivity.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.connectivity.rc \
     $(LOCAL_PATH)/init/init.sensor_2_0.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.sensor_2_0.rc \
     $(LOCAL_PATH)/init/init.cgroup.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.cgroup.rc \
@@ -120,11 +112,9 @@ PRODUCT_COPY_FILES += \
 
 # Keymint
 PRODUCT_PACKAGES += \
-    android.hardware.security.keymint@3.0-service.mitee
 
 # Media
 PRODUCT_PACKAGES += \
-    android.hardware.media.c2@1.2-mediatek-64b
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -158,19 +148,12 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    libmtkperf_client_vendor \
-    libperfctl_vendor \
-    libpowerhalwrap_vendor
 
 # Rootdir
 PRODUCT_PACKAGES += \
-    init.mt6897.rc \
-    init.project.rc
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors-service.xiaomi-multihal \
     sensors.dynamic_sensor_hal
 
 PRODUCT_COPY_FILES += \
@@ -192,8 +175,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
-    android.hardware.radio-service \
-    android.hardware.radio.config-service
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
