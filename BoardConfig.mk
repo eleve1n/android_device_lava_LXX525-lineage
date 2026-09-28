@@ -174,4 +174,4 @@ WIFI_FEATURE_SUPPLICANT_11AX := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
-include vendor/lava/LXX525/BoardConfigVendor.mk
+include vendor/lava/LXX525/LXX525-vendor.mk
