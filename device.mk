@@ -122,12 +122,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.managed_users.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.managed_users.xml \
     frameworks/native/data/etc/android.software.webview.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.webview.xml
 
-# Power
-PRODUCT_PACKAGES += \
-
-# Rootdir
-PRODUCT_PACKAGES += \
-
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.dynamic_sensor_hal
