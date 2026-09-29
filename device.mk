@@ -21,9 +21,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Boot control
-PRODUCT_PACKAGES += \
-
 PRODUCT_PACKAGES += \
     create_pl_dev \
     create_pl_dev.recovery
