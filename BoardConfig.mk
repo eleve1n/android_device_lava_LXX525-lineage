@@ -176,3 +176,8 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
 include vendor/lava/LXX525/BoardConfigVendor.mk
+
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
+BUILD_BROKEN_DUP_RULES := true
+BOARD_VNDK_VERSION := current
