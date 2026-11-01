@@ -4,8 +4,8 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_LXX525.mk
+    $(LOCAL_DIR)/crdroid_LXX525.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_LXX525-ap3a-userdebug \
-    lineage_LXX525-ap3a-eng
+    crdroid_LXX525-ap3a-userdebug \
+    crdroid_LXX525-ap3a-eng
