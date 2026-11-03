@@ -89,7 +89,6 @@ bin/egrep
 bin/env
 bin/expand
 bin/expr
-bin/factory
 bin/fallocate
 bin/false
 bin/fgrep
@@ -144,7 +143,6 @@ bin/hw/vendor.mediatek.hardware.gnss-service
 bin/hw/vendor.mediatek.hardware.gpuserv-service
 bin/hw/vendor.mediatek.hardware.mmagent-service
 bin/hw/vendor.mediatek.hardware.mmlpq@V1-service
-bin/hw/vendor.mediatek.hardware.mtkpower-service.mediatek
 bin/hw/vendor.mediatek.hardware.mtkpower_applist-service.mediatek
 bin/hw/vendor.mediatek.hardware.nvram-service
 bin/hw/vendor.mediatek.hardware.nwk_opt@1.0-service
@@ -185,14 +183,13 @@ bin/lsusb
 bin/md5sum
 bin/md_monitor
 bin/md_monitor_ctrl
-bin/meta_tst
 bin/microcom
 bin/mkdir
 bin/mkfifo
 bin/mknod
 bin/mkswap
 bin/mktemp
-bin/mnld
+vendor/bin/mnld
 bin/modinfo
 bin/modprobe
 bin/more
