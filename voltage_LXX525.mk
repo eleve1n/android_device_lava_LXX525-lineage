@@ -11,13 +11,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/lava/LXX525/device.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+$(call inherit-product, vendor/voltage/config/common_full_phone.mk)
 
 PRODUCT_BRAND := Lava
 PRODUCT_DEVICE := LXX525
 PRODUCT_MANUFACTURER := Lava
 PRODUCT_MODEL := Agni 4 5G
-PRODUCT_NAME := lineage_LXX525
+PRODUCT_NAME := voltage_LXX525
 
 PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_GMS_CLIENTID_BASE := android-lava
